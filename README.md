@@ -4,7 +4,7 @@
 A custom RISC-V coprocessor designed in Verilog using Vivado to accelerate Spiking Neural Network (SNN) computations. The architecture extends the RISC-V ISA based on the paper "Back to Homogeneous Computing, IEEE, 2023" to enable efficient neural network processing.
 
 ## Features
-- 5-stage pipelined architecture (IF, ID, IX, IW stages)
+- 5-stage pipelined architecture (IF, ID, IX, IM, IW stages)
 - Custom ISA extensions for SNN operations:
   - Neuron current computation
   - State updates
@@ -19,7 +19,8 @@ A custom RISC-V coprocessor designed in Verilog using Vivado to accelerate Spiki
 1. **IF (Instruction Fetch)**: Retrieves instructions
 2. **ID (Instruction Decode)**: Decodes instructions and prepares operands
 3. **IX (Execution)**: Performs SNN computations and address calculations
-4. **IW (Write Back)**: Writes results to registers
+4. **IM (Memory)**: Handles memory access operations and data retrieval
+5. **IW (Write Back)**: Writes results to registers
 
 ### Register Types
 - **GPR (General Purpose Registers)**: Standard RISC-V registers
@@ -48,6 +49,7 @@ The processor implements custom instructions for SNN operations:
   - `IF_stage.v`: Instruction Fetch stage
   - `ID_stage.v`: Instruction Decode stage
   - `IX_stage.v`: Execution stage for SNN operations
+  - `Memory.v`: Memory access operations
   - `IW_stage.v`: Write-back stage
   - Register modules: `GPR.v`, `NSR.v`, `NTR.v`, `SVR.v`, etc.
 
